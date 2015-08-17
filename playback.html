@@ -1,0 +1,149 @@
+<html>
+<meta name="viewport" content="width=device-width" />
+
+<head>
+  <title>BigBlueButton Playback</title>
+  <link rel="stylesheet" href="css/bbb.playback_new.css">
+  <script type="text/javascript" src="lib/jquery.min.js"></script>
+  <script type="text/javascript" src="lib/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="lib/spin.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="acornmediaplayer/acornmediaplayer.base.css" />
+  <script type="text/javascript" src="acornmediaplayer/jquery.acornmediaplayer.js"></script>
+  <link rel="stylesheet" type="text/css" href="acornmediaplayer/themes/access/acorn.access.css" />
+  <link rel="stylesheet" type="text/css" href="acornmediaplayer/themes/darkglass/acorn.darkglass.css" />
+  
+  <script type="text/javascript" src="playback.js"></script>
+  <script type="text/javascript" src="lib/popcorn-complete.min.js"></script>
+  <script type="text/javascript" src="lib/popcorn.chattimeline.js"></script>
+  
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/demo.css" />
+	<link rel="stylesheet" type="text/css" href="css/menu_sideslide.css" />
+
+	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css"/>
+	<script>
+	window.onload = function () {
+	
+		// create the container div
+		var dv = document.createElement('div');
+		dv.setAttribute("id", "webcam_container");
+		// get all divs
+		var divs = document.getElementsByTagName('video');
+		console.log("TESTING");
+		console.log(divs[0]);
+		// get the body element
+		var playback = document.getElementById('playbackArea');
+
+		// apply class to container div
+		dv.setAttribute('class', 'container');
+		dv.innerHTML = "<div class='ui-resizable-handle ui-resizable-sw ui-icon ui-icon-gripsmall-diagonal-sw' unselectable='on' style='z-index: 1001;'></div>";
+
+		// find out all those divs having class C
+		for(var i = 0; i < divs.length; i++)
+		{
+			  // put the divs having class C inside container div
+			  console.log("appended child");
+			  dv.appendChild(divs[i]);
+		}
+
+		// finally append the container div to body
+		playback.appendChild(dv);
+		console.log("added div");
+	
+		$('#webcam_container')
+		.draggable()
+		.resizable({ handles: 'sw', aspectRatio: true });
+		
+		$(function(){$('#webcam_container').draggable().resizable();});
+	
+	}
+
+	</script>
+
+  <style>
+  .acorn-player.darkglass {
+    overflow: visible;
+  }
+  </style>
+</head>
+<body>
+	<div id="loading-recording">
+		<div id="spinner"></div>
+		<p id="load-recording-msg">Initializing recording </p>
+	</div>
+	<div id="playback-content">
+		<div id="playbackArea" class="clearfix" role="main">
+			<div id="presentation">
+				<div class="circle" id="cursor" style="visibility:hidden;"></div>
+				<div id="slide" role="img" aria-labelledby="slideText"></div>
+				<div id="slideText" class="visually-hidden" aria-live="polite"></div>
+			</div>
+			<div id="chatAndMediaArea">
+				<div id="chat" aria-live="polite" role="region" aria-label="Chat messages"></div>
+				<div id="videoRecordingWrapper" role="region" aria-label="Video">
+	<!--
+				  <video id="webcam" >You must use an HTML5 capable browser to view this page.
+				  This playback requires modern browser, please use FF, Safari, Chrome</video>
+	-->			  
+			  	</div>
+		  		<div id="audioRecordingWrapper" role="region" aria-label="Audio">
+	<!--
+			  	  <audio id="video">You must use an HTML5 capable browser to view this page.
+				  This playback requires modern browser, please use FF, Safari, Chrome</audio>	
+	-->
+				</div>
+		  	</div>
+			
+						<div class="menu-wrap">
+				<nav class="menu">
+					<div class="icon-list">
+						Slides
+						<div id="thumbnails" role="region" aria-label="Slide thumbnails"></div>
+					</div>
+				</nav>
+				<button class="close-button" id="close-button">Close Menu</button>
+			</div>
+			<button class="menu-button" id="open-button">Open Menu</button>
+		<script src="js/classie.js"></script>
+		<script src="js/main.js"></script>
+		
+			<script>
+			$(document).ready(function(){
+
+			$("#slidesButton").click(function () {
+				console.log("Toggle Slide");
+				$('#thumbnails').slideToggle(300, function() {
+				});
+			});
+
+			/*
+			var nextEvent = true;
+			$( "#dropdown" )
+				.on( "mouseenter", function() {
+					if(nextEvent) {
+						nextEvent = false
+						setTimeout(function(){
+							nextEvent = true;
+						}, 300);
+						$('#thumbnails').slideDown(300, function() {
+						});
+					}
+				})
+				.on( "mouseleave", function() {
+					nextEvent = false
+					setTimeout(function(){
+						nextEvent = true;
+					}, 300);
+					$('#thumbnails').slideUp(300, function() {
+					});
+				});
+			*/
+			});
+			
+			</script>
+		</div>
+
+	</div>	
+</body>
+</html>
