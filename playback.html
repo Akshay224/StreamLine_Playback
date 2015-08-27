@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width" />
 
 <head>
-  <title>BigBlueButton Playback</title>
+  <title>StreamLine Playback</title>
   <link rel="stylesheet" href="css/bbb.playback_new.css">
   <script type="text/javascript" src="lib/jquery.min.js"></script>
   <script type="text/javascript" src="lib/jquery-ui.min.js"></script>
@@ -28,6 +28,7 @@
 		// create the container div
 		var dv = document.createElement('div');
 		dv.setAttribute("id", "webcam_container");
+		dv.setAttribute("title", "Webcam");
 		// get all divs
 		var divs = document.getElementsByTagName('video');
 		console.log("TESTING");
@@ -102,9 +103,9 @@
 						<div id="thumbnails" role="region" aria-label="Slide thumbnails"></div>
 					</div>
 				</nav>
-				<button class="close-button" id="close-button">Close Menu</button>
+				<button class="close-button" id="close-button" title="Close Menu"></button>
 			</div>
-			<button class="menu-button" id="open-button">Open Menu</button>
+			<button class="menu-button" id="open-button" title="Open Menu"></button>
 		<script src="js/classie.js"></script>
 		<script src="js/main.js"></script>
 		
